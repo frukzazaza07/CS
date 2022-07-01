@@ -11,8 +11,6 @@ const {
 } = require("../libaries/lib");
 
 exports.add = async (req, res) => {
-
-
     //   // save address
     try {
         const uploadCompanyMap = await uploadImage(req.body.companyLogo);
@@ -28,12 +26,27 @@ exports.add = async (req, res) => {
             createBy: req.body.userId,
             Company_logo: uploadCompanyLogo.pathImage,
             Company_map: uploadCompanyMap.pathImage,
+            isDelete: false,
             createdAt: createDate(),
         };
         const company = new Company(companyData);
         const companySave = await company.save();
 
         returnSuccess.message = "Created company successfully.";
+        return res.status(200).send(returnSuccess);
+    } catch (error) {
+        returnFailed.errors.push(error.message || error.toString());
+        return res.status(500).send(returnFailed);
+    }
+
+};
+exports.retive = async (req, res) => {
+    //   // save address
+    try {
+        const companyRetiveData = await Company.find({});
+        console.log(companyRetiveData);
+        returnSuccess.message = "Retive company data successfully.";
+        returnSuccess.results = companyRetiveData;
         return res.status(200).send(returnSuccess);
     } catch (error) {
         returnFailed.errors.push(error.message || error.toString());

@@ -203,7 +203,6 @@ export default class Lib {
             var reader = new FileReader();
             reader.readAsDataURL(file);
             reader.onload = function () {
-                console.log(reader.result);
                 resolve(reader.result);
             };
             reader.onerror = function (error) {

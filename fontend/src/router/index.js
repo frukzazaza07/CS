@@ -64,7 +64,7 @@ const routes = [{
   {
     path: "/company",
     name: "Company",
-    redirect: "/company/add-company",
+    redirect: "/company/view-company",
     component: Auth,
     children: [{
         path: "view-company",

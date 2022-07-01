@@ -4,19 +4,6 @@
       <label class="text-secondary">SearchBy: &nbsp;</label>
       <input class="form-control form-control-sm" v-model="searchTerm" />
     </div>
-    <!-- :has-checkbox="true"
-    :is-fixed-first-column="true"
-    :is-loading="table.isLoading"
-    :is-re-search="table.isReSearch"
-    :columns="table.columns"
-    :rows="table.rows"
-    :rowClasses="table.rowClasses"
-    :total="table.totalRecordCount"
-    :sortable="table.sortable"
-    :messages="table.messages"
-    @do-search="doSearch"
-    @is-finished="tableLoadingFinish"
-    @return-checked-rows="updateCheckedRows" -->
     <vue3-table-lite
       :has-checkbox="true"
       :is-static-mode="true"
@@ -27,11 +14,12 @@
       :sortable="table.sortable"
       :messages="table.messages"
       :pageOptions="table.pageOptions"
+      @is-finished="tableLoadingFinish"
       @return-checked-rows="updateCheckedRows"
+      
     />
   </div>
 </template>
-
 <script>
 import { defineComponent, reactive, ref, computed, watch } from "vue";
 import vue3TableLite from "vue3-table-lite";
@@ -42,10 +30,11 @@ export default defineComponent({
   props: {
     dataColumns: Object,
     searchRequest: Function,
+    rows: Object,
   },
   setup(props) {
     const searchTerm = ref(""); // Search text
-
+    console.log(props.rows)
     // Fake data
     const data = reactive({
       rows: [],
@@ -94,6 +83,23 @@ export default defineComponent({
       ],
     });
 
+    const tableLoadingFinish = (elements) => {
+      table.isLoading = false;
+      console.log(elements);
+      Array.prototype.forEach.call(elements, function (element) {
+        if (element.classList.contains("company-delete-date")) {
+          element.addEventListener("click", function () {
+            console.log(this.dataset.id + " name-btn click!!");
+          });
+        }
+        if (element.classList.contains("quick-btn")) {
+          element.addEventListener("click", function () {
+            console.log(this.dataset.id + " quick-btn click!!");
+          });
+        }
+      });
+    };
+
     /**
      * Use vue.js watch to watch your state's change
      */
@@ -118,6 +124,7 @@ export default defineComponent({
       searchTerm,
       table,
       updateCheckedRows,
+      tableLoadingFinish,
     };
   },
 });

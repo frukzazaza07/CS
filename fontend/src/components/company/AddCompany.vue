@@ -183,6 +183,7 @@ import Lib from "@/libaries/Lib";
 import {
   handleDialogMessage,
   showDialogError,
+  showDialogSuccess,
 } from "../../libaries/handleDialogMessage";
 import PreviewImage from "@/components/previewImage/PreviewImage.vue";
 
@@ -265,7 +266,6 @@ export default {
     };
   },
   mounted() {
-      console.log(this.$store.state.auth.user)
     this.lib = new Lib();
   },
   methods: {
@@ -283,18 +283,25 @@ export default {
       }
       // console.log(this.formAddCompany.rememberMe);
       try {
-        
-        this.formAddCompany.companyLogo = await this.lib.convertFileTobase64(this.formAddCompany.companyLogo[0]);
-        this.formAddCompany.companyMap = await this.lib.convertFileTobase64(this.formAddCompany.companyMap[0]);
-        let addCompanyData = await this.$store.dispatch(
+        this.formAddCompany.companyLogo = await this.lib.convertFileTobase64(
+          this.formAddCompany.companyLogo[0]
+        );
+        this.formAddCompany.companyMap = await this.lib.convertFileTobase64(
+          this.formAddCompany.companyMap[0]
+        );
+        const addCompanyData = await this.$store.dispatch(
           "company/add",
           this.formAddCompany
         );
         console.log(addCompanyData);
         this.loginLoading = false;
         this.disabled = false;
-        // if (addCompanyData.status === true) {
-        // }
+        if (addCompanyData.status === true) {
+          this.clearData();
+          messageList = handleDialogMessage([addCompanyData.message]);
+          showDialogSuccess(messageList);
+          await this.$store.dispatch("company/retive");
+        }
       } catch (error) {
         console.log(error);
         this.loginLoading = false;
@@ -352,12 +359,12 @@ export default {
         {
           key: "companyLogo",
           value: this.formAddCompany.companyLogo,
-          option: ["validateFile:3000:jpeg,png,jpg"],
+          option: ["validateFile:30000:jpeg,png,jpg"],
         },
         {
           key: "companyMap",
           value: this.formAddCompany.companyMap,
-          option: ["validateFile:3000:jpeg,png,jpg"],
+          option: ["validateFile:30000:jpeg,png,jpg"],
         },
       ];
       const validateResults = this.lib.validateAllData(data);
@@ -366,7 +373,17 @@ export default {
     handleFileChange(file, key) {
       this.formAddCompany[key] = file;
     },
-    
+    clearData(){
+      this.formAddCompany.companyCode = "";
+      this.formAddCompany.companyName = "";
+      this.formAddCompany.companyAddress = "";
+      this.formAddCompany.companyBranch = "";
+      this.formAddCompany.companyTelephone = "";
+      this.formAddCompany.companyFax = "";
+      this.formAddCompany.companyRemark = "";
+      this.formAddCompany.companyLogo = "";
+      this.formAddCompany.companyMap = "";
+    }
   },
 };
 </script>

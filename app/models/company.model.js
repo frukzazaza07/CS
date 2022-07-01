@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
-const Address = mongoose.model(
-    "company",
+const Company = mongoose.model(
+    "Company",
     new mongoose.Schema({
         createBy: String,
         Company_code: String,
@@ -13,8 +13,9 @@ const Address = mongoose.model(
         Company_remark: String,
         Company_logo: String,
         Company_map: String,
+        isDelete: { type: Boolean, enum: [true, false] },
         createdAt: String,
     })
 );
 
-module.exports = Address;
+module.exports = Company;

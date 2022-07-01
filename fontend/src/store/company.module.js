@@ -1,6 +1,6 @@
 import ApiRequest from '@/services/ApiRequest';
 const initialState = {
-    status: true,
+    companyData: [],
 };
 const apiRequest = new ApiRequest();
 // vuex วิธีใช้ 
@@ -16,10 +16,10 @@ export const company = {
             return apiRequest.postAddCompany(company).then(
                 company => {
                     // commit เป็นการบอกโปรแกรมว่าทำอะไรต่อ อยู่ ใน property mutations ด้านล่าง
-                    let companyData = company.data.results;
+                    let companyData = company.data;
 
                     // commit('loginSuccess', userData);
-                    return Promise.resolve(companyData.data);
+                    return Promise.resolve(companyData);
                 },
                 error => {
                     commit('loginFailure');
@@ -28,11 +28,31 @@ export const company = {
             );
         },
 
+        async retive({
+            commit
+        }) {
+            return apiRequest.fetchCompanyData().then(
+                company => {
+                    // commit เป็นการบอกโปรแกรมว่าทำอะไรต่อ อยู่ ใน property mutations ด้านล่าง
+                    let companyData = company.data.results;
+
+                    commit('fetchCompanyDataSuccess', companyData);
+                    return Promise.resolve(companyData);
+                },
+                error => {
+                    commit('fetchCompanyDataFailed');
+                    return Promise.reject(error);
+                }
+            );
+        },
+
     },
     mutations: {
-        loginSuccess(state, user) {
-            state.status.loggedIn = true;
-            state.user = user;
+        fetchCompanyDataSuccess(state, companyData) {
+            state.companyData = companyData;
+        },
+        fetchCompanyDataFailed(state) {
+            state.companyData = [];
         },
     }
 };

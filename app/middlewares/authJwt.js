@@ -14,17 +14,14 @@ verifyToken = (req, res, next) => {
   }
 
   jwt.verify(token[1], config.secret, (err, decoded) => {
-    console.log(decoded)
+
     if (err) {
       const newAccessToken = createRefeshToken(decoded.id);
-
+      console.log(newAccessToken)
       return res.status(401).send({
         message: "Unauthorized!"
       });
 
-      return res.status(401).send({
-        message: "Unauthorized!"
-      });
     }
     req.userId = decoded.id;
     next();

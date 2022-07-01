@@ -71,9 +71,20 @@ export default class ApiRequest {
     }
 
     postAddCompany(companyData) {
-        console.log(companyData)
         return new Promise((resolve, reject) => {
             axios.post(`${this.apiHost}/company/add`, companyData, this.apiHeader)
+                .then(function (response) {
+                    resolve(response);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                    reject(error);
+                });
+        })
+    }
+    fetchCompanyData() {
+        return new Promise((resolve, reject) => {
+            axios.get(`${this.apiHost}/company/retive`, this.apiHeader)
                 .then(function (response) {
                     resolve(response);
                 })

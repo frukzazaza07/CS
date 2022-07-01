@@ -19,4 +19,7 @@ module.exports = function (app) {
         validateCompanyAdd.validateAddData,
         authJwt.verifyToken,
     ], controller.add);
+    app.get("/api/company/retive", [
+        authJwt.verifyToken,
+    ], controller.retive);
 };
