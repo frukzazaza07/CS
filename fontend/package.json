@@ -1,0 +1,63 @@
+{
+  "name": "webapp",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.36",
+    "@fortawesome/free-brands-svg-icons": "^5.15.4",
+    "@fortawesome/free-regular-svg-icons": "^5.15.4",
+    "@fortawesome/free-solid-svg-icons": "^5.15.4",
+    "@fortawesome/vue-fontawesome": "^3.0.0-5",
+    "admin-lte": "^3.1.0",
+    "axios": "^0.27.2",
+    "core-js": "^3.6.5",
+    "datatables.net-dt": "^1.12.1",
+    "datatables.net-vue3": "^1.0.0",
+    "dotenv": "^16.0.1",
+    "font-awesome": "^4.7.0",
+    "jquery": "^3.6.0",
+    "moment": "^2.29.3",
+    "sweetalert2": "^11.4.18",
+    "vee-validate": "^4.5.11",
+    "vue": "^3.0.0",
+    "vue-bootstrap4-table": "^1.1.11",
+    "vue-router": "^4.0.16",
+    "vue3-google-oauth2": "^1.0.6",
+    "vue3-table-lite": "^1.2.3",
+    "vuex": "^4.0.2",
+    "yup": "^0.32.11"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "@vue/compiler-sfc": "^3.0.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^6.7.2",
+    "eslint-plugin-vue": "^7.0.0"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/vue3-essential",
+      "eslint:recommended"
+    ],
+    "parserOptions": {
+      "parser": "babel-eslint"
+    },
+    "rules": {}
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}

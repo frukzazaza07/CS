@@ -1,0 +1,11 @@
+.validate-textfield-danger{
+    border: 1px solid #dc3545 !important;
+    -webkit-box-shadow: 0 0 10px #dc3545 !important;
+    box-shadow: 0 0 10px #dc3545 !important;
+}
+
+.validate-font-danger{
+    font-size: 80%;
+    font-weight: bold;
+    color: #dc3545;
+}

@@ -1,0 +1,34 @@
+.login-container {
+    -webkit-box-shadow: 0 0 10px #d4d4d4;
+    box-shadow: 0 0 10px #d4d4d4;
+    padding: 2rem;
+    width: 60%;
+    height: auto;
+    background-color: white;
+}
+
+.login-main{
+    background-color: #224888;
+}
+.login-header {
+    background-color: #434343;
+    width: 100%;
+    top: -1.5rem;
+    padding: .7rem 0 .7rem .8rem;
+    color: #fff;
+}
+
+.login-main-header{
+    top: -2rem;
+    margin-left: .5rem;
+    position: absolute;
+    background-color: #434343;
+    color: white;
+    padding: .5rem;
+}
+
+@media screen and (max-width: 600px) {
+    .login-container {
+        width: 100%;
+    }
+}

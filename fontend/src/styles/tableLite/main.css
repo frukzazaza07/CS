@@ -1,0 +1,50 @@
+.vtl-paging-change-div {
+    display: block;
+    position: absolute !important;
+    top: -30px !important;
+    right: 0px !important;
+    text-align: right !important;
+    padding-right: .5rem !important;
+}
+
+.vtl-paging {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.vtl-paging-page-label {
+    display: none;
+}
+
+.vtl-paging-page-dropdown {
+    display: none;
+}
+
+.vtl-tbody-tr:nth-child(even) {
+    background-color: rgba(0, 0, 0, .05);
+}
+
+.vtl-tbody-tr:hover {
+    background-color: rgba(0, 0, 0, 1);
+}
+
+.vtl-loading-mask {
+    padding: 0px 7.5px;
+    background-color: transparent !important;
+}
+
+.vtl-loading-content {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+
+@media screen and (min-width: 1115px) {
+    .vtl-paging-page-label {
+        display: inline;
+    }
+
+    .vtl-paging-page-dropdown {
+        display: inline;
+    }
+}
